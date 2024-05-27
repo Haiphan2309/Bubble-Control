@@ -6,6 +6,7 @@ using System.IO;
 using NaughtyAttributes;
 using GDC.Managers;
 using GDC.Enums;
+using Gameplay;
 
 namespace LevelEditor
 {
@@ -30,7 +31,7 @@ namespace LevelEditor
             }
         }
 
-        public List<CustomTile> tiles = new List<CustomTile>();
+        public CustomTileList customTileList;
         [SerializeField] List<Tilemap> tilemaps = new List<Tilemap>();
         public Dictionary<int, Tilemap> layers = new Dictionary<int, Tilemap>();
         [SerializeField] string levelName;
@@ -68,7 +69,7 @@ namespace LevelEditor
                         //get the tile on the position
                         TileBase temp = tilemap.GetTile(new Vector3Int(x, y, 0));
                         //find the temp tile in the custom tiles list
-                        CustomTile temptile = tiles.Find(t => t.tile == temp);
+                        CustomTile temptile = customTileList.tiles.Find(t => t.tile == temp);
 
                         //if there's a customtile associated with the tile
                         if (temptile != null)
@@ -85,7 +86,7 @@ namespace LevelEditor
 
             //save the data as a json
             string json = JsonUtility.ToJson(levelData, true);
-            File.WriteAllText(Application.dataPath + "/" + levelName + "json", json);
+            File.WriteAllText(Application.dataPath + "/" + levelName + ".json", json);
 
             //debug
             Debug.Log("Level was saved");
@@ -98,6 +99,10 @@ namespace LevelEditor
             string json = File.ReadAllText(Application.dataPath + "/" + levelName + ".json");
             LevelData levelData = JsonUtility.FromJson<LevelData>(json);
 
+            if (PlayerBubble.Instance != null)
+            {
+                PlayerBubble.Instance.transform.position = levelData.playerPos;
+            }    
             foreach (var data in levelData.layers)
             {
                 if (!layers.TryGetValue(data.layer_id, out Tilemap tilemap)) break;
@@ -108,7 +113,7 @@ namespace LevelEditor
                 //place the tiles
                 for (int i = 0; i < data.tiles.Count; i++)
                 {
-                    TileBase tile = tiles.Find(t => t.id == data.tiles[i]).tile;
+                    TileBase tile = customTileList.tiles.Find(t => t.id == data.tiles[i]).tile;
                     if (tile) tilemap.SetTile(new Vector3Int(data.poses_x[i], data.poses_y[i], 0), tile);
                 }
             }
@@ -119,13 +124,17 @@ namespace LevelEditor
         [Button]
         void LoadGameplay()
         {
-            GameManager.Instance.LoadSceneManually(SceneType.GAMEPLAY, TransitionType.LEFT, SoundType.NONE, (() => Debug.Log("AAA")));
+            GameManager.Instance.LoadSceneManually(SceneType.GAMEPLAY, TransitionType.LEFT, SoundType.NONE, (() =>
+            {
+                GameManager.Instance.SetInitGameplay(customTileList, levelName);
+            }));
         }
     }
 
     [System.Serializable]
     public class LevelData
     {
+        public Vector2 playerPos;
         public List<LayerData> layers = new List<LayerData>();
     }
 

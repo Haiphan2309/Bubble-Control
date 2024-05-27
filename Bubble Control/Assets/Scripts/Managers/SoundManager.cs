@@ -207,6 +207,7 @@ namespace GDC.Managers
         string _logSoundIDFormat = "Frame <color=#00FF30>{0}</color> Play SoundID: <color=#00FF30>{1}</color> - <color=#00FF30>{2}</color>";
         public AudioSource PlaySound(SoundID soundID, float volume = 1f)
         {
+            return null;
             if (soundID == SoundID.NONE) return null;
 
             SoundMapping soundMapping = null;
@@ -766,6 +767,7 @@ namespace GDC.Managers
 
         public void LoadSoundMap(SoundType soundType)
         {
+            return;
             for (int i = 0; i < this.soundMaps.Count; i++)
             {
                 if (this.soundMaps[i].soundType == soundType)

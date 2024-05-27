@@ -1,0 +1,62 @@
+{
+    "playerPos": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "layers": [
+        {
+            "layer_id": 50,
+            "tiles": [
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround",
+                "DarkGround"
+            ],
+            "poses_x": [
+                -3,
+                -3,
+                -3,
+                -2,
+                -1,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                2,
+                2
+            ],
+            "poses_y": [
+                -1,
+                0,
+                1,
+                -1,
+                -1,
+                0,
+                1,
+                -2,
+                -1,
+                0,
+                1,
+                -2,
+                -1
+            ]
+        },
+        {
+            "layer_id": 40,
+            "tiles": [],
+            "poses_x": [],
+            "poses_y": []
+        }
+    ]
+}

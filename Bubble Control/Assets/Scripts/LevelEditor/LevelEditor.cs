@@ -15,7 +15,7 @@ namespace LevelEditor
         {
             get
             {
-                if (LevelManager.Instance.layers.TryGetValue((int)LevelManager.Instance.tiles[_selectedTileIndex].tilemap, out Tilemap tilemap))
+                if (LevelManager.Instance.layers.TryGetValue((int)LevelManager.Instance.customTileList.tiles[_selectedTileIndex].tilemap, out Tilemap tilemap))
                 {
                     return tilemap;
                 }
@@ -29,7 +29,7 @@ namespace LevelEditor
         {
             get
             {
-                return LevelManager.Instance.tiles[_selectedTileIndex].tile;
+                return LevelManager.Instance.customTileList.tiles[_selectedTileIndex].tile;
             }
         }
 

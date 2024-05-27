@@ -7,6 +7,7 @@ using TMPro;
 using GDC.Events;
 using GDC.Enums;
 using AudioPlayer;
+using Gameplay;
 
 namespace GDC.Managers
 {
@@ -183,13 +184,14 @@ namespace GDC.Managers
             yield return new WaitForSeconds(0.6f);
             isLoadSceneComplete = true;
         }
-        public void SetInitData()
+        public void SetInitGameplay(CustomTileList customTileList, string levelName)
         {
-            StartCoroutine(Cor_InitData());
+            StartCoroutine(Cor_InitGameplay(customTileList, levelName));
         }
-        IEnumerator Cor_InitData()
+        IEnumerator Cor_InitGameplay(CustomTileList customTileList, string levelName)
         {
-            yield return null;
+            yield return new WaitUntil(() => GameplayController.Instance != null);
+            GameplayController.Instance.LoadLevel(customTileList, levelName);
         }
     }
 }
