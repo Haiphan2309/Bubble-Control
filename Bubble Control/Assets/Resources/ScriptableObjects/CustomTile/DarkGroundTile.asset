@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a9985d2a9bf944a90cb8f6ee340e92, type: 3}
+  m_Name: DarkGroundTile
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 427b4f6415269b94fb0519e73de031da, type: 2}
+  id: DarkGround
+  tilemap: 50
