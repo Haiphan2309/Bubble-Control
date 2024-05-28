@@ -7,7 +7,7 @@ namespace Gameplay
     public class Enemy : MonoBehaviour
     {
         [SerializeField] protected int hp;
-
+        [SerializeField] protected Animator anim;
         public virtual void Hurt()
         {
             hp--;
