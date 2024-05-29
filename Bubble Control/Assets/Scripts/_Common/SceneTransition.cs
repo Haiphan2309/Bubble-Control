@@ -4,6 +4,7 @@ using AudioPlayer;
 using GDC.Enums;
 using DG.Tweening;
 using UnityEngine.UI;
+using Gameplay;
 
 namespace GDC.Common
 {
@@ -35,6 +36,15 @@ namespace GDC.Common
             imageRectTransform.gameObject.SetActive(true);
             Image image = imageRectTransform.GetComponent<Image>();
             image.color = Color.black;
+
+            if (PlayerBubble.Instance!=null)
+            {
+                inRect.position = Camera.main.WorldToScreenPoint(PlayerBubble.Instance.transform.position);
+            }
+            else
+            {
+                inRect.anchoredPosition = Vector2.zero;
+            }
 
             if (transitionType == TransitionType.LEFT)
             {
@@ -90,6 +100,15 @@ namespace GDC.Common
             //m_Animator.CrossFade(OutKeyAnimation, 0, 0);
             Image image = imageRectTransform.GetComponent<Image>();
             image.color = Color.black;
+
+            if (PlayerBubble.Instance != null)
+            {
+                inRect.position = Camera.main.WorldToScreenPoint(PlayerBubble.Instance.transform.position);
+            }
+            else
+            {
+                inRect.anchoredPosition = Vector2.zero;
+            }
 
             if (transitionType == TransitionType.LEFT)
             {

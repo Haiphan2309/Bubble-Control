@@ -7,6 +7,8 @@ using System.IO;
 using UnityEngine.Tilemaps;
 using static LevelEditor.LevelManager;
 using NaughtyAttributes;
+using GDC.Common;
+using GDC.Enums;
 
 namespace Gameplay
 {
@@ -31,6 +33,14 @@ namespace Gameplay
                     }
                 }
             }
+        }
+        public void Lose()
+        {
+            SceneTransition.Instance.TransitionIn(TransitionType.IN);
+        }
+        public void Win()
+        {
+            SceneTransition.Instance.TransitionIn(TransitionType.IN);
         }
         public void LoadLevel(CustomTileList customTileList, string levelName)
         {
